@@ -5,13 +5,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumUtilities extends BaseSeleniumTest {
 
-	private String LOGIN_USER = "andresm96@gmail.com";
-	private String PASSWORD = "123456";
-	private String URL_LOGIN = URL_BASE;
 	public static int WAIT_VALUE = 600;
+	private static WebDriverWait wait;
 
 	/**
 	 * Method to login.
@@ -23,15 +22,6 @@ public class SeleniumUtilities extends BaseSeleniumTest {
 		
 	}
 
-	/**
-	 * Method to open Nomina app.
-	 * 
-	 * @param webDriver
-	 */
-	public void openNominaWebPage(WebDriver webDriver) {
-		driver = webDriver;
-		navigateTo(URL_BASE);
-	}
 
 
 	/**
@@ -136,10 +126,31 @@ public class SeleniumUtilities extends BaseSeleniumTest {
 	/**
 	 * Method wait until an element to be visible
 	 * 
-	 * @param locator
+	 * @param element
 	 */
-	public void waitLoadElement(WebElement element) {
-		wait.until(ExpectedConditions.visibilityOf(element));
+	public static void waitLoadElement(By locator, WebDriver driver) {
+		wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	/**
+	 * Method wait until an element to be clickeable
+	 * 
+	 * @param element
+	 */
+	public static void waitClickeableElement(By locator, WebDriver driver) {
+		wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+	
+	/**
+	 * Method wait until all elements to be visible
+	 * 
+	 * @param element
+	 */
+	public static void waitLoadElements(By locator, WebDriver driver) {
+		wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
 	}
 
 

@@ -22,7 +22,6 @@ public class ItemPage {
 	private By cantidadItemLocator;
 	private By addToCarButtonLocator;
 
-	private By popularNameItem0Locator;
 
 	
 	private WebDriverWait wait;
@@ -47,29 +46,12 @@ public class ItemPage {
 
 	}
 
-	/**
-	 * Method wait until an element to be visible
-	 * 
-	 * @param element
-	 */
-	public void waitLoadElement(By locator) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
-	
-	/**
-	 * Method wait until all elements to be visible
-	 * 
-	 * @param element
-	 */
-	public void waitLoadElements(By locator) {
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-	}
 
 	/**
 	 * Metodo que devuelve el nombre de un item
 	 */
 	public String getNameItem() {
-		waitLoadElement(descriptionSectionLocator);
+		SeleniumUtilities.waitLoadElement(descriptionSectionLocator, driver);
 		return driver.findElement(descriptionSectionLocator).findElement(nameItemLocator).getText();
 	}
 
@@ -77,7 +59,7 @@ public class ItemPage {
 	 * Metodo que devuelve el nombre de un item
 	 */
 	public String getPriceItem() {
-		waitLoadElement(descriptionSectionLocator);
+		SeleniumUtilities.waitLoadElement(descriptionSectionLocator, driver);
 		return driver.findElement(descriptionSectionLocator).findElement(priceItemLocator).getText();
 	}
 	
@@ -85,7 +67,7 @@ public class ItemPage {
 	 * Metodo ingresa la cantidad a comprar de un item
 	 */
 	public void setQuantityItem(String quantity) {
-		waitLoadElement(descriptionSectionLocator);
+		SeleniumUtilities.waitLoadElement(descriptionSectionLocator, driver);
 		driver.findElement(descriptionSectionLocator).findElement(cantidadItemLocator).click();
 		driver.findElement(descriptionSectionLocator).findElement(cantidadItemLocator).sendKeys(quantity);
 	}
@@ -94,7 +76,7 @@ public class ItemPage {
 	 * Metodo ingresa la cantidad a comprar de un item
 	 */
 	public void setColorItem(String color) {
-		waitLoadElements(colorItemLocator);
+		SeleniumUtilities.waitLoadElements(colorItemLocator, driver);
 		List<WebElement> colors = driver.findElements(colorItemLocator);
 		if (colors.size() > 1) {
 			for (int i = 0; i < colors.size(); i++) {
@@ -112,7 +94,7 @@ public class ItemPage {
 	 * Metodo que devuelve el nombre de un item
 	 */
 	public void clicAddToCar() {
-		waitLoadElement(addToCarButtonLocator);
+		SeleniumUtilities.waitLoadElement(addToCarButtonLocator, driver);
 		driver.findElement(addToCarButtonLocator).click();
 	}
 	

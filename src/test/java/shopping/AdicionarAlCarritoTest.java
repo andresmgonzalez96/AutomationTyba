@@ -34,7 +34,7 @@ public class AdicionarAlCarritoTest extends BaseSeleniumTest {
 	/**
 	 * Test que valida que se permita adicionar un item de otro color al carrito
 	 */
-	public void adicionarVariasTabletGris() {
+	public void adicionarTabletOtroColor() {
 		PopularItemsPage page = new PopularItemsPage(driver);
 		page.clicPopularItems();
 		page.clicDetallesPrimerItem();
@@ -60,19 +60,5 @@ public class AdicionarAlCarritoTest extends BaseSeleniumTest {
 
 	}
 	
-
-		
-
-	@Before
-	public void arrange() {
-		
-
-	}
-	
-	@After
-	public void after() {
-
-
-	}
 
 }

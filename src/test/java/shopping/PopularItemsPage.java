@@ -21,12 +21,9 @@ public class PopularItemsPage {
 	private By popularDetailsItem2Locator;
 	private By popularNameItem0Locator;
 	
-	private By nuestrosProductosLocator;
-	
+	private By nuestrosProductosLocator;	
 	private By iconBuyCarLocator;
 
-	
-	private WebDriverWait wait;
 
 	/**
 	 * Constructor.
@@ -44,47 +41,19 @@ public class PopularItemsPage {
 		popularDetailsItem2Locator = By.id("details_21");			
 		popularNameItem0Locator = By.name("popular_item_16_name");
 		
-		nuestrosProductosLocator = By.id("our_products");
-		
+		nuestrosProductosLocator = By.id("our_products");		
 		iconBuyCarLocator = By.id("shoppingCartLink");
-		
-		wait = new WebDriverWait(driver, 60);
 
 	}
 
-	/**
-	 * Method wait until an element to be visible
-	 * 
-	 * @param element
-	 */
-	public void waitLoadElement(By locator) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
 	
-	/**
-	 * Method wait until an element to be clickeable
-	 * 
-	 * @param element
-	 */
-	public void waitClickeableElement(By locator) {
-		wait.until(ExpectedConditions.elementToBeClickable(locator));
-	}
-	
-	/**
-	 * Method wait until all elements to be visible
-	 * 
-	 * @param element
-	 */
-	public void waitLoadElements(By locator) {
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-	}
 
 	/**
 	 * Metodo que hace clic en la opcion de popular Items.
 	 */
 	public void clicPopularItems() {
-		waitClickeableElement(nuestrosProductosLocator);
-		waitLoadElements(optionsMenuLocator);
+		SeleniumUtilities.waitClickeableElement(nuestrosProductosLocator, driver);
+		SeleniumUtilities.waitLoadElements(optionsMenuLocator, driver);
 		driver.findElements(optionsMenuLocator).get(1).click();
 		SeleniumUtilities.waitTime(3000);
 	}
@@ -93,8 +62,8 @@ public class PopularItemsPage {
 	 * Metodo que hace clic en el detalle del primer item popular
 	 */
 	public void clicDetallesPrimerItem() {
-		waitClickeableElement(popularDetailsItem0Locator);
-		waitLoadElement(popularDetailsItem0Locator);
+		SeleniumUtilities.waitClickeableElement(popularDetailsItem0Locator, driver);
+		SeleniumUtilities.waitLoadElement(popularDetailsItem0Locator, driver);
 		driver.findElement(popularDetailsItem0Locator).click();
 	}
 	
@@ -102,7 +71,7 @@ public class PopularItemsPage {
 	 * Metodo que hace clic en el detalle del Segundo item popular
 	 */
 	public void clicDetallesSegundoItem() {
-		waitLoadElement(popularDetailsItem1Locator);
+		SeleniumUtilities.waitLoadElement(popularDetailsItem1Locator, driver);
 		driver.findElement(popularDetailsItem1Locator).click();
 	}
 	
@@ -110,7 +79,7 @@ public class PopularItemsPage {
 	 * Metodo que hace clic en el detalle del Tercer item popular
 	 */
 	public void clicDetallesTercerItem() {
-		waitLoadElement(popularDetailsItem2Locator);
+		SeleniumUtilities.waitLoadElement(popularDetailsItem2Locator, driver);
 		driver.findElement(popularDetailsItem2Locator).click();
 	}
 	
@@ -118,8 +87,8 @@ public class PopularItemsPage {
 	 * Metodo que devuelve el nombre del primer item popular
 	 */
 	public String getNamePrimerPopularItem() {
-		waitLoadElement(namePopularItemsLocator);
-		waitClickeableElement(popularDetailsItem0Locator);
+		SeleniumUtilities.waitLoadElement(namePopularItemsLocator, driver);
+		SeleniumUtilities.waitClickeableElement(popularDetailsItem0Locator, driver);
 		return driver.findElement(popularNameItem0Locator).getText();
 	}
 	
@@ -127,7 +96,7 @@ public class PopularItemsPage {
 	 * Metodo que abre el carrito de compras
 	 */
 	public void irAlCarritoButton() {
-		waitLoadElement(iconBuyCarLocator);
+		SeleniumUtilities.waitLoadElement(iconBuyCarLocator, driver);
 		driver.findElement(iconBuyCarLocator).click();
 	}
 	
